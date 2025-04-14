@@ -30,8 +30,9 @@ Se desejar, você pode hospedar este portfólio utilizando plataformas como:
 
 ## 📞 Contato
 Se quiser entrar em contato comigo, pode me encontrar nas redes sociais:
-- **LinkedIn**: [linkedin.com/in/seu-perfil](https://www.linkedin.com/in/juanmarks7/)
-- **GitHub**: [github.com/seu-usuario](https://github.com/JuanMarks)
+- **LinkedIn**: [linkedin.com/in/juanmarks7](https://www.linkedin.com/in/juanmarks7/)
+- **GitHub**: [github.com/JuanMarks](https://github.com/JuanMarks)
+- **LINK**: [github.com/meu-portfolio](https://juanmarks.github.io/meu-portfolio/)
 
 ---
 Feito com 💙 por Juan Marques 🚀
