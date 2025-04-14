@@ -22,12 +22,6 @@ Para visualizar o portfólio localmente:
    ```
 2. Abra o arquivo `index.html` em seu navegador.
 
-## 🌎 Deploy
-Se desejar, você pode hospedar este portfólio utilizando plataformas como:
-- **GitHub Pages**
-- **Vercel**
-- **Netlify**
-
 ## 📞 Contato
 Se quiser entrar em contato comigo, pode me encontrar nas redes sociais:
 - **LinkedIn**: [linkedin.com/in/juanmarks7](https://www.linkedin.com/in/juanmarks7/)
