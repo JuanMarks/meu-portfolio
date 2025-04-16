@@ -18,7 +18,7 @@ Este é o meu portfólio pessoal desenvolvido com **HTML, CSS e Bootstrap**. Ele
 Para visualizar o portfólio localmente:
 1. Clone este repositório:
    ```sh
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/JuanMarks/meu-portfolio.git
    ```
 2. Abra o arquivo `index.html` em seu navegador.
 
