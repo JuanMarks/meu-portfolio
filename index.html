@@ -1,56 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>JuanDev | Portfólio</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #c95ad6;
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --text-light: #f8f9fa;
+            --text-secondary: #adb5bd;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #181818;
-            color: white;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
         }
 
-        .profile-card {
-            background: #222;
-            padding: 20px;
-            border-radius: 15px;
+        /* --- Navbar --- */
+        .navbar {
+            transition: background-color 0.4s ease;
         }
 
-        .progress-bar {
-            background: linear-gradient(to right, #6a11cb, #c95ad6);
+        .navbar.scrolled {
+            background-color: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
         }
 
-        .contact-btn {
-            background: linear-gradient(to right, #6a11cb, #c95ad6);
+        .navbar-brand {
+            font-weight: 700;
+        }
+
+        .nav-link {
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* --- Botões e Links --- */
+        .btn-gradient {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             border: none;
             color: white;
+            padding: 12px 24px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .contact-btn:hover {
-            opacity: 0.9;
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: white;
         }
 
-        .bg-contato{
-            background-color: #222;
+        /* --- Seção Hero --- */
+        #hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
         }
+        
+        .hero-img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+        }
+
+        .typing-effect {
+            border-right: 2px solid var(--text-light);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text-light); }
+        }
+
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.2);
+        }
+
+        /* --- Seções --- */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        
+        /* --- Tecnologias --- */
+        .tech-icon {
+            width: 80px;
+            margin: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-icon:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* --- Projetos --- */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid #333;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-body {
+            color: var(--text-secondary);
+        }
+        
+        .card-title {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .tech-tag {
+            background-color: rgba(106, 17, 203, 0.2);
+            color: var(--secondary-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        
+        /* --- Contato --- */
+        .form-control {
+            background-color: var(--bg-card);
+            border: 1px solid #444;
+            color: var(--text-light);
+        }
+        
+        .form-control:focus {
+            background-color: var(--bg-card);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(106, 17, 203, 0.25);
+            color: var(--text-light);
+        }
+        
+        /* --- Rodapé --- */
+        footer {
+            background-color: var(--bg-card);
+            padding: 20px 0;
+        }
+
     </style>
 </head>
 
 <body>
     <header>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand fs-4 fw-bold" href="#">JuanDev</a>
+                <a class="navbar-brand fs-4" href="#">JuanDev</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto fs-4 gap-3">
+                    <ul class="navbar-nav ms-auto fs-5 gap-3">
                         <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
                         <li class="nav-item"><a class="nav-link" href="#tecnologias">Tecnologias</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
@@ -60,175 +229,200 @@
             </div>
         </nav>
     </header>
-    <section>
-        <div class="container-fluid d-flex justify-content-center mt-5">
-            <div class="container-fluid p-4">
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-center text-lg-start" data-aos="fade-right">
+                        <h1 class="display-4 fw-bold mb-3">
+                            <span class="typing-effect">Olá, Eu sou Juan</span> 👋
+                        </h1>
+                        <p class="lead text-secondary mb-4">Desenvolvedor Full-Stack apaixonado por criar soluções inovadoras e eficientes.</p>
+                        <a href="#contato" class="btn btn-gradient me-3">Entre em contato</a>
+                        <a href="curriculo.pdf" class="btn btn-outline-light" download>Baixar CV</a>
+                    </div>
+                    <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="fade-left">
+                        <img src="./assets/img-port.png" class="rounded-circle hero-img" alt="Foto de Perfil de Juan">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="container">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-title">Sobre Mim</h2>
+                </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="d-flex">
-                            <img src="./assets/img-port.png" class="rounded-circle mb-3" width="250" alt="Profile Image">
-                            <div>
-                                <h2 class="ms-3 " style="margin-top: 100px;">Ola, Eu sou Juan 👋</h2>
-                                <p class="text-white opacity-50 ms-3">Software Engineer</p>
-                            </div>
-
-                        </div>
-
-
-                        <h5>Sobre mim</h5>
-                        <p class="lead">Desenvolvedor Full-Stack apaixonado por tecnologia, com experiência em Python,
-                            React e Django. Já trabalhei em projetos de inteligência artificial, como um algoritmo para
-                            seleção de currículos, e participei de hackathons, como o Ninna Hub. Atualmente, estou
-                            cursando Engenharia de Software na Estácio e sempre buscando novos desafios para criar
-                            soluções inovadoras.</p>
-
-                        <h5>Tecnologias</h5>
-                        <p>As principais tecnologias que utilizo:</p>
-                        <div class="d-flex justify-content-center flex-wrap tech-icons">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                                width="100" alt="Python">
-                            <img src="https://w7.pngwing.com/pngs/10/113/png-transparent-django-web-development-web-framework-python-software-framework-django-text-trademark-logo.png"
-                                width="100" alt="Django">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                                width="100" alt="HTML">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                                width="100" alt="CSS">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                width="100" alt="JavaScript">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                                width="100" alt="React">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-                                width="100" alt="PostgreSQL">
+                    <div class="col-lg-8 mx-auto text-center" data-aos="fade-up" data-aos-delay="100">
+                        <p class="fs-5 text-secondary">
+                            Com experiência em Python, React e Django, tenho um forte interesse em projetos de inteligência artificial, como um algoritmo para seleção de currículos que desenvolvi. Participei de hackathons como o Ninna Hub e atualmente curso Engenharia de Software na Estácio, sempre em busca de novos desafios para expandir meu conhecimento.
+                        </p>
+                        <div class="mt-4 social-icons">
+                             <a href="https://www.linkedin.com/in/juanmarks7/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                             <a href="https://github.com/JuanMarks" target="_blank"><i class="fa-brands fa-github"></i></a>
+                             <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tecnologias" class="bg-dark">
+            <div class="container">
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="section-title">Tecnologias</h2>
+                    <p class="lead text-secondary">As principais tecnologias que utilizo no meu dia a dia.</p>
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-wrap mt-4" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="tech-icon" alt="Python" title="Python">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" class="tech-icon" alt="Django" title="Django">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon" alt="React" title="React">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon" alt="JavaScript" title="JavaScript">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" alt="HTML5" title="HTML5">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon" alt="CSS3" title="CSS3">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="tech-icon" alt="PostgreSQL" title="PostgreSQL">
+                </div>
+            </div>
+        </section>
 
-                    <div class="col-md-6 col-sm-12">
-                        <div class="d-flex justify-content-end align-items-center flex-column" style="margin-top: 80px;">
-                            <div class="ms-5">
-                                <h5>Curriculo</h5>
-                                <p>Baixe meu currículo para saber mais sobre minha experiência e habilidades.</p>
-                                <a class="btn contact-btn w-50" href="curriculo.pdf" download>Baixar Currículo</a>
-                                <h5 class="mt-5">Languages</h5>
-                                <p>
-                                    <img src="https://flagcdn.com/w40/us.png" width="20" class="me-2"> EN - Advanced
-                                </p>
-                                <p>
-                                    <img src="https://flagcdn.com/w40/br.png" width="20" class="me-2"> PT-BR - Native
-                                    Speaker
-                                </p>
-
-                                <h5 class="mt-5">Education</h5>
-                                <p>
-                                    <img src="https://cdn-icons-png.flaticon.com/512/2891/2891491.png" width="20"
-                                        class="me-2">
-                                    Software Engineer Bachelors Degree - Estacio
-                                </p>
+        <section id="projetos">
+            <div class="container">
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="section-title">Meus Projetos</h2>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-lg-6 mb-4" data-aos="fade-up">
+                        <a href="https://github.com/JuanMarks/atacadao_manager" target="_blank" class="text-decoration-none">
+                            <div class="card h-100">
+                                <img src="./assets/atacado.png" class="card-img-top" alt="Projeto Gerenciador de Atacado">
+                                <div class="card-body">
+                                    <h5 class="card-title">Gerenciador de Atacado</h5>
+                                    <p class="card-text">Sistema completo para gestão de vendas, cadastro de itens e impressão de notas fiscais, proporcionando controle e organização.</p>
+                                    <div class="mt-3">
+                                        <span class="tech-tag">React</span>
+                                        <span class="tech-tag">TailwindCSS</span>
+                                        <span class="tech-tag">Django</span>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="ms-5 mt-5">
-                                <a href="https://www.linkedin.com/in/juanmarks7/" target="_blank">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="50">
-                                </a>
-                                <a href="https://github.com/JuanMarks" target="_blank">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" width="50">
-                                </a>
-                                <a href="https://twitter.com" target="_blank">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" width="50">
-                                </a>
-                            </div>
-
-                            <a href="https://mail.google.com/mail/?view=cm&to=juandev77@gmail.com" target="_blank"<button class="btn contact-btn ms-5 mt-4 w-50">CONTACT ME</button></a>
-                        </div>
+                        </a>
                     </div>
-
+                    <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                         <a href="https://github.com/JuanMarks/projeto_sas" target="_blank" class="text-decoration-none">
+                            <div class="card h-100">
+                                <img src="./assets/download.gif" class="card-img-top" alt="Projeto SaaS de Criação de Sites">
+                                <div class="card-body">
+                                    <h5 class="card-title">SaaS de Criação de Sites</h5>
+                                    <p class="card-text">Permite que usuários escolham e personalizem layouts para diversos tipos de negócio, garantindo flexibilidade e autonomia.</p>
+                                    <div class="mt-3">
+                                        <span class="tech-tag">React</span>
+                                        <span class="tech-tag">Django</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-4" data-aos="fade-up">
+                        <a href="https://github.com/JuanMarks/trabalho_helpdesk" target="_blank" class="text-decoration-none">
+                            <div class="card h-100">
+                                <img src="./assets/tickets2.gif" class="card-img-top" alt="Projeto HelpDesk Inteligente">
+                                <div class="card-body">
+                                    <h5 class="card-title">HelpDesk Inteligente</h5>
+                                    <p class="card-text">Plataforma de gestão de chamados com bate-papo em tempo real para comunicação ágil entre analistas e usuários.</p>
+                                     <div class="mt-3">
+                                        <span class="tech-tag">Django</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <a href="https://github.com/JuansOrg/e-commerce" target="_blank" class="text-decoration-none">
+                            <div class="card h-100">
+                                <img src="./assets/e-commerce.gif" class="card-img-top" alt="Projeto E-commerce de Eletrônicos">
+                                <div class="card-body">
+                                    <h5 class="card-title">E-commerce de Eletrônicos</h5>
+                                    <p class="card-text">Oferece uma experiência moderna e responsiva para compra de eletrônicos, com navegação intuitiva e carrinho de compras.</p>
+                                    <div class="mt-3">
+                                        <span class="tech-tag">React</span>
+                                        <span class="tech-tag">TailwindCSS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section>
-        <div class="container-fluid mt-5" id="projetos">
-            <h1 class="text-center">Meus Projetos</h1>
-            <div class="row">
-                <div class="col-md-6 col-sm-12 mb-3">
-                    <a href="https://github.com/JuanMarks/atacadao_manager" style="text-decoration: none;"><div class="card w-full h-100">
-                        <img src="./assets/atacado.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">O Gerenciador de Atacado feito em React e TailwindCss e DjangoRestFramework é um sistema completo para a gestão eficiente de vendas no atacado. Ele permite o cadastro de itens, a realização de vendas e a impressão de notas fiscais, proporcionando mais controle e organização para o seu negócio.</p>
-                        </div>
-                    </div></a>
+        <section id="contato" class="bg-dark">
+            <div class="container">
+                <div class="text-center" data-aos="fade-up">
+                    <h2 class="section-title">Contato</h2>
                 </div>
-
-                <div class="col-md-6 col-sm-12 mb-3">
-                    <a href="https://github.com/JuanMarks/projeto_sas" style="text-decoration: none;"><div class="card w-full mb-3 h-100">
-                        <img src="./assets/download.gif" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">Meu SaaS de criação de sites feito em React e DjangoRestFramework permite que usuários escolham e personalizem o layout ideal para seu negócio, seja uma loja de roupas, um e-commerce de eletrônicos ou uma clínica odontológica. Com poucos cliques, é possível selecionar um template profissional e modificar o design sempre que necessário, garantindo total flexibilidade e autonomia.</p>
-                        </div>
-                    </div></a>
-                </div>
-
-                <div class="col-md-6 col-sm-12 mb-3">
-                    <a href="https://github.com/JuanMarks/trabalho_helpdesk" style="text-decoration: none;"><div class="card w-full mb-3 h-100">
-                        <img src="./assets/tickets2.gif" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">O HelpDesk Inteligente feito em Django é uma plataforma completa para a gestão de chamados, permitindo que usuários abram tickets de suporte e que analistas realizem o atendimento de forma ágil e organizada. O sistema conta com um bate-papo em tempo real, facilitando a comunicação entre o analista e o usuário, além de permitir o redirecionamento de chamados entre analistas para um suporte mais eficiente.</p>
-                        </div>
-                    </div></a>
-                </div>
-
-                <div class="col-md-6 col-sm-12 mb-3">
-                    <a href="https://github.com/JuansOrg/e-commerce" style="text-decoration: none;"><div class="card w-full mb-3 h-100">
-                        <img src="./assets/e-commerce.gif" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <p class="card-text">Este projeto feito em React e TailwindCss é um e-commerce de eletrônicos desenvolvido com React e Tailwind CSS, oferecendo uma experiência moderna e responsiva para os usuários. A plataforma permite que clientes naveguem por uma ampla variedade de produtos eletrônicos, adicionem itens ao carrinho e realizem compras de forma intuitiva.</p>
-                        </div>
-                    </div></a>
+                <div class="row mt-5 align-items-center">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <h5>Vamos conversar!</h5>
+                        <p class="text-secondary">Se você tem um projeto em mente, uma oportunidade de colaboração, ou simplesmente quer dizer "oi", sinta-se à vontade para me enviar uma mensagem.</p>
+                        <p class="text-secondary">Email: <a href="mailto:juandev77@gmail.com" class="text-light">juandev77@gmail.com</a></p>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="name" placeholder="Seu nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="Seu email" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="message" rows="4" placeholder="Sua mensagem" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gradient">Enviar Mensagem</button>
+                        </form>
+                    </div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <footer class="text-center">
+        <div class="container">
+            <p class="text-secondary mb-0">&copy; 2025 JuanDev. Todos os direitos reservados.</p>
         </div>
-    </section>
+    </footer>
 
-    <section>
-        <div class="container p-3 mt-5 mb-5 rounded-3 bg-dark" id="contato">
-            <h1 class="text-center">Contato</h1>
-            <div class="row">
-                <div class="">
-                    <h5>Entre em contato</h5>
-                    <p>Se você está interessado em discutir um projeto, uma colaboração ou apenas quer dizer olá, fique à vontade para entrar em contato!</p>
-                    <p>Ou envie um email diretamente para mim clicando <a href="https://mail.google.com/mail/?view=cm&to=juandev77@gmail.com" target="_blank" class="text-white">aqui</a>.</p>
-                    <form id="contactForm" class="mb-5">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Mensagem</label>
-                            <textarea class="form-control" id="message" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn contact-btn">Enviar</button>
-                    </form>
-                </div>
 
-                <div class="col-md-6 text-center">
-                    <img src="contato.png" alt="" width="300">
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
-    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
+        // Inicializa a biblioteca AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Efeito da Navbar ao rolar
+        const navbar = document.querySelector('.navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        };
+
+        // Lógica do EmailJS
         (function(){
-           emailjs.init({
-             publicKey: "cMum92dvOOxh6AF4x",
-           });
+            emailjs.init({
+              publicKey: "cMum92dvOOxh6AF4x", // Sua Public Key
+            });
         })();
+        
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
@@ -236,13 +430,14 @@
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
-            emailjs.send("service_6l5vidj", "template_f416oam", {
+            emailjs.send("service_6l5vidj", "template_f416oam", { // Seu Service ID e Template ID
                 name: name,
                 email: email,
                 message: message,
             }).then(
                 function (response) {
                     alert('Email enviado com sucesso!');
+                    document.getElementById('contactForm').reset();
                 },
                 function (error) {
                     alert('Erro ao enviar o email. Tente novamente.');
@@ -253,5 +448,4 @@
     </script>
 
 </body>
-
 </html>
